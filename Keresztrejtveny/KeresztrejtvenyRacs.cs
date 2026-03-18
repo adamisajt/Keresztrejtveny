@@ -21,7 +21,6 @@ namespace Keresztrejtveny
 
             SorokDb = Adatsorok.Count;
             OszlopokDb = Adatsorok[0].Length;
-
             Racs = new char[SorokDb + 2, OszlopokDb + 2];
             Sorszamok = new int[SorokDb + 2, OszlopokDb + 2];
 
@@ -37,7 +36,79 @@ namespace Keresztrejtveny
         {
             for (int i = 0; i < SorokDb; i++)
                 for (int j = 0; j < OszlopokDb; j++)
-                    Racs[i + 1, j + 1] = Adatsorok[i][j];
+                Racs[i + 1, j + 1] = Adatsorok[i][j];
+        }
+        public void Megjelenit()
+        {
+            for (int i = 1; i <= SorokDb; i++)
+            {
+                for (int j = 1; j <= OszlopokDb; j++)
+                {
+                    if (Racs[i, j] == '-')
+                        Console.Write("[]");
+                    else
+                        Console.Write("##");
+                }
+                Console.WriteLine();
+            }
+        }
+
+
+        public int LeghosszabbFuggoleges()
+        {
+            int max = 0;
+            for (int j = 1; j <= OszlopokDb; j++)
+            {
+                int hossz = 0;
+                for (int i = 1; i <= SorokDb; i++)
+                {
+                    if (Racs[i, j] == '-')
+                    {
+                        hossz++;
+                        if (hossz > max) max = hossz;
+                    }
+                    else
+                        hossz = 0;
+                }
+            }
+            return max;
+        }
+        public void VizszintesStatisztika()
+        {
+            Dictionary<int, int> stat = new Dictionary<int, int>();
+
+            for (int i = 1; i <= SorokDb; i++)
+            {
+                int hossz = 0;
+
+                for (int j = 1; j <= OszlopokDb; j++)
+                {
+                    if (Racs[i, j] == '-')
+                        hossz++;
+                    else
+                    {
+                        if (hossz >= 2)
+                        {
+                            if (!stat.ContainsKey(hossz))
+                                stat[hossz] = 0;
+
+                            stat[hossz]++;
+                        }
+                        hossz = 0;
+                    }
+                }
+
+                if (hossz >= 2)
+                {
+                    if (!stat.ContainsKey(hossz))
+                        stat[hossz] = 0;
+
+                    stat[hossz]++;
+                }
+            }
+
+            foreach (var k in stat.OrderBy(x => x.Key))
+                Console.WriteLine($"{k.Key} betűs: {k.Value} darab");
         }
     }
 
