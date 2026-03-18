@@ -5,17 +5,11 @@
 
         static void Main(string[] args)
         {
-            KeresztrejtenyRacs racs = new KeresztrejtenyRacs("kr1.txt");
-            Console.WriteLine("5. feladat");
-            Console.WriteLine($"a keresztrejtveny merete: {racs.MeretSzoveg()}");
+            KeresztrejtvenyRacs racs = new KeresztrejtvenyRacs("kr1.txt");
+            Console.WriteLine("5. feladat: A keresztrejtvény mérete");
+            Console.WriteLine($"Sorok száma: {racs.SorokDb}");
+            Console.WriteLine($"Oszlopok száma: {racs.OszlopokDb}");
 
-            Console.WriteLine("6. feladat");
-            racs.SzavakStatisztika(out int szavakSzama, out int maxHossz);
-            Console.WriteLine($"a keresztrejtvenyben {szavakSzama} darab szo van.");
-            Console.WriteLine($"a leghosszabb szo hossza: {maxHossz}");
-
-
-            Console.ReadKey();
         }
     }
 }
