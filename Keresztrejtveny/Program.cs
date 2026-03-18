@@ -2,9 +2,14 @@
 {
     internal class Program
     {
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            KeresztrejtenyRacs racs = new KeresztrejtenyRacs("kr1.txt");
+            Console.WriteLine("5. feladat");
+
+            Console.ReadKey();
         }
     }
 }
+
